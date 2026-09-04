@@ -79,7 +79,7 @@ $config['environment'] = getenv('APP_ENV') ?: 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= 'http:/127.0.0';
+$config['base_url'] 				= getenv('APP_URL') ?: 'http://localhost/';
 
 /*
 |--------------------------------------------------------------------------
