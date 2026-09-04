@@ -44,4 +44,18 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 /** @var object $router **/
 
+// Load middleware registrations early so kernel Middleware class can see them
+// before the router dispatches (Config::load() would run too late for this).
+// Wrapped in a closure so the local $config array inside middleware.php
+// does not collide with the global $config Config object used elsewhere.
+(function () {
+    require_once APP_DIR . 'config/middleware.php';
+    get_config($config);
+})();
+
 $router->get('/', 'Welcome::index');
+
+$router->get('/student', 'StudentController::index');
+$router->get('/student/profile', 'StudentController::profile')->middleware('student');
+
+$router->get('/users', 'UsersController::index');
