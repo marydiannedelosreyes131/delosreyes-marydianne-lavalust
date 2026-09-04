@@ -113,14 +113,14 @@ $user_count = count($users ?? []);
 <body>
 <div class="layout">
     <aside>
-        <a class="brand" href="<?= htmlspecialchars(base_url()); ?>">
+        <a class="brand" href="/">
             <span class="brand-mark">L</span>
             <span>LavaLust</span>
         </a>
         <p class="eyebrow">Workspace</p>
         <nav aria-label="Main navigation">
-            <a href="<?= htmlspecialchars(base_url()); ?>"><span class="nav-icon">⌂</span>Overview</a>
-            <a class="active" href="<?= htmlspecialchars(base_url('users')); ?>" aria-current="page"><span class="nav-icon">◎</span>Users</a>
+            <a href="/"><span class="nav-icon">⌂</span>Overview</a>
+            <a class="active" href="/users" aria-current="page"><span class="nav-icon">◎</span>Users</a>
         </nav>
         <div class="aside-foot">LAVALUST / ADMIN<br>DIRECTORY 01</div>
     </aside>
