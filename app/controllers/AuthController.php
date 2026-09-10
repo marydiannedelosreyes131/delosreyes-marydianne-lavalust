@@ -44,9 +44,9 @@ class AuthController extends Controller
         }
 
         $this->call->database();
-        $this->call->model('UsersModel');
+        $this->call->model('UserModel');
 
-        $user = $this->UsersModel->find_by('username', $username);
+        $user = $this->UserModel->find_by('username', $username);
 
         if (!$user || !password_verify($password, $user['password'])) {
             $_SESSION['auth_error'] = 'Invalid username or password.';
@@ -112,21 +112,21 @@ class AuthController extends Controller
         }
 
         $this->call->database();
-        $this->call->model('UsersModel');
+        $this->call->model('UserModel');
 
-        if ($this->UsersModel->find_by('username', $username)) {
+        if ($this->UserModel->find_by('username', $username)) {
             $_SESSION['auth_error'] = 'That username is already taken.';
             redirect('register');
             return;
         }
 
-        if ($this->UsersModel->find_by('email', $email)) {
+        if ($this->UserModel->find_by('email', $email)) {
             $_SESSION['auth_error'] = 'That email is already registered.';
             redirect('register');
             return;
         }
 
-        $this->UsersModel->insert([
+        $this->UserModel->insert([
             'username'  => $username,
             'email'     => $email,
             'password'  => password_hash($password, PASSWORD_DEFAULT),

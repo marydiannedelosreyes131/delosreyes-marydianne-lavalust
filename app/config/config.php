@@ -79,7 +79,7 @@ $config['environment'] = getenv('APP_ENV') ?: 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= getenv('APP_URL') ?: 'http://localhost/';
+$config['base_url'] 				= getenv('APP_URL') ?: 'http://127.0.0.1:3000/';
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +99,7 @@ $config['proxy_enabled']           = FALSE;
 | variable to blank.
 |
 */
-$config['index_page']               = 'index.php';
+$config['index_page']               = '';
 
 /*
 |--------------------------------------------------------------------------
