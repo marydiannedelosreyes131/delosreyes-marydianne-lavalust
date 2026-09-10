@@ -15,6 +15,8 @@ class AuthController extends Controller
      */
     public function login()
     {
+        $this->ensure_default_users();
+
         // Already logged in? Skip straight to the product list.
         if (isset($_SESSION['user_id'])) {
             redirect('products');
@@ -27,6 +29,42 @@ class AuthController extends Controller
         unset($_SESSION['auth_error']);
 
         $this->call->view('login_view', $data);
+    }
+
+    /**
+     * Seed default demo users if the database is empty.
+     */
+    protected function ensure_default_users()
+    {
+        $this->call->database();
+        $this->call->model('UserModel');
+
+        if ($this->UserModel->count() > 0) {
+            return;
+        }
+
+        $defaults = [
+            [
+                'username' => 'admin',
+                'email' => 'admin@example.com',
+                'password' => password_hash('admin12345', PASSWORD_DEFAULT),
+                'role' => 'admin',
+                'is_active' => 1,
+            ],
+            [
+                'username' => 'user',
+                'email' => 'user@example.com',
+                'password' => password_hash('user12345', PASSWORD_DEFAULT),
+                'role' => 'user',
+                'is_active' => 1,
+            ],
+        ];
+
+        foreach ($defaults as $user) {
+            if (!$this->UserModel->find_by('username', $user['username'])) {
+                $this->UserModel->insert($user);
+            }
+        }
     }
 
     /**
