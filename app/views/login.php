@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign in  |  Product Desk</title>
+    <title>Sign in | Product Desk</title>
     <style>
         :root { color-scheme: dark; --bg: #111827; --panel: #1f2937; --line: #374151; --accent: #f59e0b; --text: #f9fafb; --muted: #9ca3af; }
         * { box-sizing: border-box; } body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; font: 16px/1.5 Georgia, serif; background: linear-gradient(135deg, #111827, #243447); color: var(--text); }
