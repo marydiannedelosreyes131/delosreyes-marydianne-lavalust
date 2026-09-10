@@ -12,7 +12,7 @@ class Create_users_table {
 
     public function up()
     {
-        if ($this->_lava->dbforge->table_exists('users')) {
+        if ($this->_lava->dbforge->table_exists('user')) {
             return;
         }
 
@@ -43,7 +43,7 @@ class Create_users_table {
                 ],
                 'role' => [
                     'type'       => 'ENUM',
-                    'constraint' => "'admin','moderator','user'",
+                    'constraint' => "'admin','user'",
                     'null'       => FALSE,
                     'default'    => 'user',
                 ],
@@ -74,6 +74,6 @@ class Create_users_table {
 
     public function down()
     {
-        $this->_lava->dbforge->drop_table('users');
+        $this->_lava->dbforge->drop_table('user');
     }
 }
