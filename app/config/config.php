@@ -79,7 +79,12 @@ $config['environment'] = getenv('APP_ENV') ?: 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] 				= getenv('APP_URL') ?: 'http://127.0.0.1:3000/';
+$host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '127.0.0.1:8080';
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+    ? 'https' : 'http';
+
+$config['base_url'] = getenv('APP_URL') ?: $scheme . '://' . $host . '/';
 
 /*
 |--------------------------------------------------------------------------
